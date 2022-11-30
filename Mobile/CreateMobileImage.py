@@ -37,7 +37,7 @@ while True:
             bucket_name = json.loads(str(event))["Records"][0]["s3"]["bucket"]["name"]
             key = json.loads(str(event))["Records"][0]["s3"]["object"]["key"]
         except Exception as e:
-            print("skipp")
+            print("skip")
             sqs_client.delete_message(
                 QueueUrl=queue_url,
                 ReceiptHandle=receipt_handle
@@ -56,4 +56,6 @@ while True:
                 ReceiptHandle=receipt_handle
             )
     except Exception as e:
-        print("waiting for new event....")
+        print("waiting 20 second for new event....")
+        
+        
